@@ -2,13 +2,12 @@ const express = require('express')
 const cors = require('cors')
 express()
   .use(cors())
-  .use(express.static('client/public'))
   .use(express.json())
   .use(express.urlencoded({ extended: true }))
-  .get('/', (req, res) => {
-    res.sendFile(__dirname, '/client/build/index.html')
-  })
+  .use(express.static('client/build'))
+	.get('/*', (req, res) => {
+		let file = path.join('/app/client/build', 'index.html')
+		res.sendFile(file)
+	})  
   .use('/api', require('./api'))
   .listen(process.env.PORT||4000, () => console.log(`server run at http://localhost:4000`))
-
-  
