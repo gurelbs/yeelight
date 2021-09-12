@@ -8,7 +8,7 @@ express()
   .use(express.json())
   .use(express.urlencoded({ extended: true }))
   .use(express.static('client/public'))
-	.get('/', (req, res) => {
+	.get('/*', (req, res) => {
 		let file = path.join(prod ? '/app/client/build/index.html' : '/client/build/index.html')
 		res.sendFile(file)
 	})  
