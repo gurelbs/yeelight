@@ -2,6 +2,7 @@ const express = require('express')
 const cors = require('cors')
 express()
   .use(cors())
+  .use(express.static('client/public'))
   .use(express.json())
   .use(express.urlencoded({ extended: true }))
   .get('/', (req, res) => {
