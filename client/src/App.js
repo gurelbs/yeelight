@@ -35,7 +35,7 @@ function App() {
 				checkFt('לכבות'))
 		if (isOff) {
 			api
-				.get('?mode=off',{CancelToken: source.token})
+				.get('api?mode=off',{CancelToken: source.token})
 				.then(res => {
 					console.log(res.data)
 					setResult('מכבה')
@@ -52,7 +52,7 @@ function App() {
 				checkFt('להדליק'))
 		if (isOn) {
 			api
-				.get('?mode=on',{CancelToken: source.token})
+				.get('api?mode=on',{CancelToken: source.token})
 				.then(res => {
 					console.log(res.data)
 					setResult('מדליק')
@@ -71,7 +71,7 @@ function App() {
       let perc =  finalTranscript.replace(/[\D]/g, '')
       if (!perc || perc > 100 || perc < 0) return
       api
-        .get(`?bright=${perc}`,{CancelToken: source.token})
+        .get(`api?bright=${perc}`,{CancelToken: source.token})
         .then(res => {
           console.log(res.data)
           setResult(`בהירות: ${perc}%`)

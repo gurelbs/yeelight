@@ -1,14 +1,14 @@
-const axios = require('axios')
-let url;
+import { create } from 'axios';
+let url
 
 if (process.env.NODE_ENV === 'development'){
-    url = 'http://localhost:4000/api'
+    url = 'http://localhost:4000/'
 } else {
-    url = '/api'
+    url = '/'
 }
 
-const api = axios.create({
+const api = create({
     baseURL: url
 })
 
-module.exports = api
+export default api
