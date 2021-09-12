@@ -1,5 +1,7 @@
 const express = require('express')
 const cors = require('cors')
+const path = require('path')
+const PORT = process.env.PORT||4000
 express()
   .use(cors())
   .use(express.json())
@@ -10,4 +12,4 @@ express()
 		res.sendFile(file)
 	})  
   .use('/api', require('./api'))
-  .listen(process.env.PORT||4000, () => console.log(`server run at http://localhost:4000`))
+  .listen(PORT, () => console.log(`server run at http://localhost:${PORT}`))

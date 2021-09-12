@@ -2,7 +2,10 @@ import React, { useEffect, useState } from 'react'
 import './App.css'
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
 import axios from 'axios'
+import api from './api'
 function App() {
+	const CancelToken = axios.CancelToken;
+	const source = CancelToken.source();
 	const [result, setResult] = useState('')
 	const {
 		transcript,
@@ -31,8 +34,8 @@ function App() {
 				checkFt('כיבוי') ||
 				checkFt('לכבות'))
 		if (isOff) {
-			axios
-				.get('http://localhost:4000/api?mode=off')
+			api
+				.get('?mode=off',{CancelToken: source.token})
 				.then(res => {
 					console.log(res.data)
 					setResult('מכבה')
@@ -48,8 +51,8 @@ function App() {
 				checkFt('הפעלה') ||
 				checkFt('להדליק'))
 		if (isOn) {
-			axios
-				.get('http://localhost:4000/api?mode=on')
+			api
+				.get('?mode=on',{CancelToken: source.token})
 				.then(res => {
 					console.log(res.data)
 					setResult('מדליק')
@@ -67,8 +70,8 @@ function App() {
     if (brightness) {
       let perc =  finalTranscript.replace(/[\D]/g, '')
       if (!perc || perc > 100 || perc < 0) return
-      axios
-        .get(`http://localhost:4000/api?bright=${perc}`)
+      api
+        .get(`?bright=${perc}`,{CancelToken: source.token})
         .then(res => {
           console.log(res.data)
           setResult(`בהירות: ${perc}%`)
