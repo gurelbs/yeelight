@@ -10,7 +10,7 @@ function setPower(mode) {
         } else {
             client.bind(yeelight => {
                 yeelightControl = yeelight
-                yeelight.set_power(mode)
+                yeelightControl.set_power(mode)
                 return yeelight.closeConnection()
             })
         }
@@ -25,7 +25,7 @@ function setBright(brightness) {
         } else {
             client.bind(yeelight => {
                 yeelightControl = yeelight
-                yeelight.set_bright(brightness)
+                yeelightControl.set_bright(brightness)
                 return yeelight.closeConnection()
             })
         }
