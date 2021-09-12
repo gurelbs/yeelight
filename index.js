@@ -10,7 +10,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 if (prod) {
 	app.use(express.static('client/build'))
-	app.get('/*', (req, res) => {
+	app.get('/', (req, res) => {
 		let file = path.join('/app/client/build', 'index.html')
 		res.sendFile(file)
 	})
