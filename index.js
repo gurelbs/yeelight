@@ -10,7 +10,7 @@ express()
   // .use(express.static('client/public'))
 	.get('/', (req, res) => {
 		let file = path.join(prod ? '/app/client/build/index.html' : '/client/build/index.html')
-		res.sendFile(file, { root: __dirname })
+		res.sendFile(file)
 	})  
   .use('/api', require('./api'))
   .listen(PORT, () => console.log(`server run at http://localhost:${PORT}`))
